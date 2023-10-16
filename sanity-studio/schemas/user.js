@@ -64,4 +64,10 @@ export default {
       validation: (Rule) => Rule.unique(),
     },
   ],
+  preview: {
+    select: {
+      title: 'name', // user schema key
+      subtitle: 'username',
+    },
+  },
 }
