@@ -11,7 +11,7 @@ export default function ColorButton({ text, onClick }: Props) {
         className="bg-white rounded-sm text-base p-[0.3rem] hover:opacity-90 transition-opacity"
         onClick={onClick}
       >
-        {text}
+        <p className="text-sm">{text}</p>
       </button>
     </div>
   );
