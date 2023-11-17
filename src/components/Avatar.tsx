@@ -13,7 +13,8 @@ function Avatar({ image, size = "normal", highlight = false }: Props) {
     <div className={getContainerStyle(size, highlight)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        className="rounded-full p-[0.1rem]"
+        referrerPolicy="no-referrer"
+        className="rounded-full p-[0.1rem] w-full h-full"
         alt="user profile"
         src={image ?? undefined}
       />
