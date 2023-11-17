@@ -1,6 +1,6 @@
 import { client } from "./sanity";
-// user와 관련된 새니티 CRUD
 
+// user와 관련된 새니티 CRUD
 type OAuthUser = {
   id: string;
   email?: string;
@@ -8,6 +8,8 @@ type OAuthUser = {
   username: string;
   image?: string | null;
 };
+
+// ANCHOR createIfNotExists 데이터 생성
 export async function addUser({ id, username, name, email, image }: OAuthUser) {
   return client.createIfNotExists({
     _id: id,
@@ -20,4 +22,16 @@ export async function addUser({ id, username, name, email, image }: OAuthUser) {
     followers: [],
     bookmarks: [],
   });
+}
+
+// ANCHOR fetch 데이터 가져오기
+// username을 기반으로 User 정보 새니티에서 얻기 https://www.sanity.io/docs/query-cheat-sheet
+export async function getUserByUsername(username: string) {
+  return client.fetch(/* groq */ `*[_type == "user" && username == "${username}"][0]{
+      ...,
+      "id":_id,
+      following[]->{username,image},
+      followers[]->{username,image},
+      "bookmarks":bookmarks[]->_id
+    }`);
 }
