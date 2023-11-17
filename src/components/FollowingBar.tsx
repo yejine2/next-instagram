@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BeatLoader } from "react-spinners";
 import useSWR from "swr";
 import Avatar from "./Avatar";
+import ScrollableBar from "./ui/ScrollableBar";
 
 // 1. 클라이언트 컴포넌트에서 백엔드에게 api/me로 요청 - 사용자의 정보 얻기
 // 1-2. 유저 정보를 백엔드에 보낼 필요는 없다. 로그인 하면 브라우저 자체적으로 요청하고 서버에게서부터 응답헤더에 로그인 토큰에 쿠키받음,
@@ -14,26 +15,39 @@ import Avatar from "./Avatar";
 
 function FollowingBar() {
   const { data, isLoading, error } = useSWR<DetailUser>("/api/me");
-  const users = data?.following;
+  const users = data?.following && [
+    ...data?.following,
+    ...data?.following,
+    ...data?.following,
+    ...data?.following,
+    ...data?.following,
+  ];
 
   return (
-    <section>
+    <section className="w-full flex justify-center items-center p-4 bg-white rounded-lg shadow-sm min-h-[90px] shadow-neutral-300 overflow-x-auto">
       {isLoading ? (
         <BeatLoader size={8} color="gray" />
       ) : (
-        !users || (users.length === 0 && <p>{`팔로잉하는 유저가 없습니다.`}</p>)
+        (!users || users.length === 0) && (
+          <p className="text-gray-400 text-sm">{`관심있는 사람을 팔로잉 해보세요`}</p>
+        )
       )}
+
       {users && users.length > 0 && (
-        <ul>
+        <ScrollableBar>
           {users.map(({ image, username }) => (
-            <li key={username}>
-              <Link href={`/user/${username}`}>
-                <Avatar image={image} highlight />
-                <p>{username}</p>
-              </Link>
-            </li>
+            <Link
+              key={username}
+              className="flex flex-col items-center w-20"
+              href={`/user/${username}`}
+            >
+              <Avatar image={image} highlight />
+              <p className="w-full text-sm text-center text-ellipsis overflow-hidden">
+                {username}
+              </p>
+            </Link>
           ))}
-        </ul>
+        </ScrollableBar>
       )}
     </section>
   );
