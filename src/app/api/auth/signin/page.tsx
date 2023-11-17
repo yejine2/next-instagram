@@ -11,8 +11,6 @@ type Props = {
 };
 
 async function SigninPage({ searchParams: { callbackUrl } }: Props) {
-  console.log("callbackUrl", callbackUrl);
-
   // 서버 컴포넌트
   const session = await getServerSession(authOptions);
 
