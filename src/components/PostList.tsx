@@ -1,13 +1,31 @@
 "use client";
 
 import { SimplePost } from "@/model/post";
+import { BeatLoader } from "react-spinners";
 import useSWR from "swr";
+import PostListCard from "./PostListCard";
 
 function PostList() {
   const { data: posts, isLoading } = useSWR<SimplePost[]>("/api/posts");
 
   return (
-    <ul>{posts && posts.map((post) => <li key={post.id}>{post.text}</li>)}</ul>
+    <section className="py-4">
+      {isLoading && (
+        <div className="text-center mt-32">
+          <BeatLoader size={8} color="skyblue" />
+        </div>
+      )}
+      {posts && (
+        <ul className="flex flex-col gap-4">
+          {posts &&
+            posts.map((post) => (
+              <li key={post.id}>
+                <PostListCard post={post} />
+              </li>
+            ))}
+        </ul>
+      )}
+    </section>
   );
 }
 
