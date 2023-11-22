@@ -1,4 +1,5 @@
-import { client } from "./sanity";
+import { SimplePost } from "@/model/post";
+import { client, urlFor } from "./sanity";
 
 // projection 하면서 필드 추가 하는 것
 // post.author.username -> post.username 으로 간편하게 사용할 수 있게 풀어서
@@ -16,9 +17,14 @@ const simplePostProjection = `
 `;
 
 export async function getFollowingPostsOf(username: string) {
-  return client.fetch(/* groq */ `*[_type == "post" && author->username == "${username}"
+  return client
+    .fetch(
+      /* groq */ `*[_type == "post" && author->username == "${username}"
   ||  author._ref in *[_type == "user" && username == "${username}"].following[]._ref] | order(_createdAt desc){
     ${simplePostProjection}
-  }
-    `);
+  }`
+    )
+    .then((posts) =>
+      posts.map((post: SimplePost) => ({ ...post, image: urlFor(post.image) }))
+    );
 }
