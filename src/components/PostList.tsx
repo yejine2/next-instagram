@@ -18,9 +18,9 @@ function PostList() {
       {posts && (
         <ul className="flex flex-col gap-4">
           {posts &&
-            posts.map((post) => (
+            posts.map((post, index) => (
               <li key={post.id}>
-                <PostListCard post={post} />
+                <PostListCard post={post} priority={index < 2} />
               </li>
             ))}
         </ul>
