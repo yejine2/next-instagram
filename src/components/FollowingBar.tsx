@@ -24,7 +24,7 @@ function FollowingBar() {
   ];
 
   return (
-    <section className="w-full flex justify-center items-center p-4 bg-white rounded-lg shadow-sm min-h-[90px] shadow-neutral-300 overflow-x-auto">
+    <section className="w-full flex justify-center items-center p-4 bg-white rounded-lg shadow-sm min-h-[90px] shadow-neutral-300 overflow-x-auto relative z-0">
       {isLoading ? (
         <BeatLoader size={8} color="gray" />
       ) : (
