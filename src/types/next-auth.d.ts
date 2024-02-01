@@ -1,4 +1,4 @@
-import { User } from "@/model/user";
+import { AuthUser } from "@/model/user";
 // import NextAuth, { DefaultSession } from "next-auth/next";
 
 // 기존 next-auth의 타입 중 interface Session에 user의 username라는 임의의 type 추가
@@ -8,6 +8,6 @@ declare module "next-auth" {
     // user: {
     //   username: string;
     // } & DefaultSession["user"];
-    user: User; // 직접 정의한 타입으로 재정의
+    user: AuthUser; // 직접 정의한 타입으로 재정의
   }
 }
