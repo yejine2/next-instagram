@@ -3,6 +3,12 @@ import { authOptions } from "../[...nextauth]/route";
 import { redirect } from "next/navigation";
 import { getProviders } from "next-auth/react";
 import Signin from "@/components/Signin";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Signin",
+  description: "Signup or Login to Yestagram",
+};
 
 type Props = {
   searchParams: {

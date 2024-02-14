@@ -27,7 +27,7 @@ function Navbar() {
   return (
     <div className="flex justify-between items-center px-6">
       <Link href={"/"}>
-        <h1 className="text-3xl font-bold">I</h1>
+        <h1 className="text-3xl font-bold">Yestagram</h1>
       </Link>
       <nav>
         <ul className="flex items-center gap-4 p-4">
