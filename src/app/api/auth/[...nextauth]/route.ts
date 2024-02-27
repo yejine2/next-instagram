@@ -25,16 +25,24 @@ export const authOptions: NextAuthOptions = {
       });
       return true;
     },
-    async session({ session }) {
+    async session({ session, token }) {
       // Send properties to the client, like an access_token and user id from a provider.
       const user = session?.user;
       if (user) {
         session.user = {
           ...user,
           username: user.email?.split("@")[0] || "",
+          id: token.id as string,
         };
       }
       return session;
+    },
+    // jwt가 만들어지거나 업데이트될 때마다 호출,
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
     },
   },
   pages: {
