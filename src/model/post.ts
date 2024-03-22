@@ -1,7 +1,7 @@
 export type Comment = {
   comment: string;
   username: string;
-  image: string;
+  image?: string | undefined;
 };
 
 // 타임라인 포스트
