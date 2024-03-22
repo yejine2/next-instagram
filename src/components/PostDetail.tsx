@@ -1,10 +1,8 @@
-import useMe from "@/hooks/me";
 import useFullPost from "@/hooks/post";
-import { SimplePost } from "@/model/post";
+import { Comment, SimplePost } from "@/model/post";
 import Image from "next/image";
 import ActionBar from "./ActionBar";
 import Avatar from "./Avatar";
-import CommentForm from "./CommentForm";
 import PostUserAvatar from "./PostUserAvatar";
 
 type Props = {
@@ -12,18 +10,12 @@ type Props = {
 };
 
 export default function PostDetail({ post }: Props) {
-  const { id, userImage, username, image, createdAt, likes } = post;
+  const { id, userImage, username, image } = post;
   const { post: data, postComment } = useFullPost(id);
-  const { user } = useMe();
   const comments = data?.comments;
 
-  const handlePostComment = (comment: string) => {
-    user &&
-      postComment({
-        comment,
-        username: user.username,
-        image: user.image,
-      });
+  const handlePostComment = (comment: Comment) => {
+    postComment(comment);
   };
 
   return (
@@ -59,8 +51,7 @@ export default function PostDetail({ post }: Props) {
               )
             )}
         </ul>
-        <ActionBar post={post} />
-        <CommentForm onPostComment={handlePostComment} />
+        <ActionBar post={post} onComment={handlePostComment} />
       </div>
     </section>
   );

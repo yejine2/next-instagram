@@ -1,5 +1,5 @@
 "use client";
-import { SimplePost } from "@/model/post";
+import { Comment, SimplePost } from "@/model/post";
 import React, { useState } from "react";
 import Avatar from "./Avatar";
 import Image from "next/image";
@@ -23,7 +23,7 @@ export default function PostListCard({ post, priority = false }: Props) {
   const [openModal, setOpenModal] = useState(false);
   const { postComment } = usePosts();
 
-  const handlePostComment = (comment: string) => {
+  const handlePostComment = (comment: Comment) => {
     postComment(post, comment);
   };
 
@@ -39,7 +39,7 @@ export default function PostListCard({ post, priority = false }: Props) {
         priority={priority}
         onClick={() => setOpenModal(true)}
       />
-      <ActionBar post={post}>
+      <ActionBar post={post} onComment={handlePostComment}>
         <p>
           <span className="font-bold mr-1">{username}</span>
           {text}
@@ -51,7 +51,7 @@ export default function PostListCard({ post, priority = false }: Props) {
           >{`View all ${comments} comments`}</button>
         )}
       </ActionBar>
-      <CommentForm onPostComment={handlePostComment} />
+
       {openModal && (
         <ModalPortal>
           <PostModal onClose={() => setOpenModal(false)}>
