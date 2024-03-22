@@ -1,8 +1,7 @@
 "use client";
-import { HomeUser } from "@/model/user";
+import useMe from "@/hooks/me";
 import Link from "next/link";
 import { BeatLoader } from "react-spinners";
-import useSWR from "swr";
 import Avatar from "./Avatar";
 import ScrollableBar from "./ui/ScrollableBar";
 
@@ -14,15 +13,8 @@ import ScrollableBar from "./ui/ScrollableBar";
 // 4. 여기에서, 클라이언트 컴포넌트에서 followings의 정보를 UI에 보여줌 (image, usename)
 
 function FollowingBar() {
-  const { data, isLoading, error } = useSWR<HomeUser>("/api/me");
-  const users = data?.following && [
-    ...data?.following,
-    ...data?.following,
-    ...data?.following,
-    ...data?.following,
-    ...data?.following,
-  ];
-
+  const { user, isLoading, error } = useMe();
+  const users = user?.following;
   return (
     <section className="w-full flex justify-center items-center p-4 bg-white rounded-lg shadow-sm min-h-[90px] shadow-neutral-300 overflow-x-auto relative z-0">
       {isLoading ? (
