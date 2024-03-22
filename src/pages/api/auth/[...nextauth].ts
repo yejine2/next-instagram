@@ -10,23 +10,20 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    // 사용자가 로그인하면 user 객체에 전달되는 정보들로 addUser 호출
     async signIn({ user: { id, name, image, email } }) {
       if (!email) {
         return false;
       }
-
       addUser({
         id,
         name: name || "",
         image,
         email,
-        username: email?.split("@")[0],
+        username: email.split("@")[0],
       });
       return true;
     },
     async session({ session, token }) {
-      // Send properties to the client, like an access_token and user id from a provider.
       const user = session?.user;
       if (user) {
         session.user = {
@@ -37,7 +34,6 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-    // jwt가 만들어지거나 업데이트될 때마다 호출,
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -47,13 +43,6 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/auth/signin",
-    // signOut: "/auth/signout",
-    // error: "/auth/error", // Error code passed in query string as ?error=
-    // verifyRequest: "/auth/verify-request", // (used for check email message)
-    // newUser: "/auth/new-user", // New users will be directed here on first sign in (leave the property out if not of interest)
   },
 };
-
-const handler = NextAuth(authOptions);
-
-export { handler as GET, handler as POST };
+export default NextAuth(authOptions);

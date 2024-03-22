@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getUserByUsername } from "@/service/user";
 
 // 로직을 한 곳에 다 정리하지마라.
