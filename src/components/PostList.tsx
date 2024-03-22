@@ -1,12 +1,11 @@
 "use client";
 
-import { SimplePost } from "@/model/post";
+import usePosts from "@/hooks/posts";
 import { BeatLoader } from "react-spinners";
-import useSWR from "swr";
 import PostListCard from "./PostListCard";
 
 function PostList() {
-  const { data: posts, isLoading } = useSWR<SimplePost[]>("/api/posts");
+  const { posts, isLoading } = usePosts();
 
   return (
     <section className="py-4">
