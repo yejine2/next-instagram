@@ -2,17 +2,10 @@ import { SimplePost } from "@/model/post";
 import useSWR from "swr";
 import PostGridCard from "./PostGridCard";
 import { BeatLoader } from "react-spinners";
+import usePosts from "@/hooks/posts";
 
-type Props = {
-  username: string;
-  query: string;
-};
-export default function PostGrid({ username, query }: Props) {
-  const {
-    data: posts,
-    isLoading,
-    error,
-  } = useSWR<SimplePost[]>(`/api/users/${username}/${query}`);
+export default function PostGrid() {
+  const { posts, isLoading } = usePosts();
 
   return (
     <div className="w-full text-center">
