@@ -1,38 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 데모
+[next-instagram-sage.vercel.app](https://next-instagram-sage.vercel.app/)
 
-## Getting Started
+## 기술스택 & 기능
+### Framework
+ - [Next.js](https://nextjs.org/)  – Vercel에서 만든 React.js 기반 프레임워크
+ - [Auth.js](https://authjs.dev/)  – OAuth(구글 등) 로그인을 지원하는 인증 라이브러리
 
-First, run the development server:
+### Backend
+ - [Sanity](https://www.sanity.io/) - headless CMS
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+### UI
+ - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+ - [React Icons](https://react-icons.github.io/react-icons/) - ES6 imports를 활용하는 아이콘 서비스
+
+### Platforms
+ - [Vercel](https://vercel.com/home)  – Next.js 애플리케이션 배포 서비스
+
+
+### 디렉토리 구조
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+src
+ ┣ app # 페이지
+ ┣ components # 공통 컴포넌트
+ ┣ context # 전역 context 관련
+ ┣ hooks # react hooks
+ ┣ model # 타입 정의
+ ┣ pages # next-auth 인증 관련
+ ┃ ┗ api
+ ┣ service # sanity client
+ ┗ util
+```
