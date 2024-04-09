@@ -1,5 +1,5 @@
-import { AiOutlineHome } from "react-icons/ai";
+import { RiHome5Line } from "react-icons/ri";
 
 export default function HomeIcon() {
-  return <AiOutlineHome className="w-7 h-7" />;
+  return <RiHome5Line className="w-6 h-6" />;
 }

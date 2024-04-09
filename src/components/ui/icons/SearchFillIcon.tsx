@@ -1,5 +1,5 @@
-import { RiSearchFill } from "react-icons/ri";
+import { MdOutlineSavedSearch } from "react-icons/md";
 
 export default function SearchFillIcon() {
-  return <RiSearchFill className="w-6 h-6" />;
+  return <MdOutlineSavedSearch className="w-6 h-6" />;
 }

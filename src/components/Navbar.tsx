@@ -1,5 +1,9 @@
 "use client";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { PiSignOut } from "react-icons/pi";
+import Avatar from "./Avatar";
 import {
   HomeFillIcon,
   HomeIcon,
@@ -8,10 +12,6 @@ import {
   SearchFillIcon,
   SearchIcon,
 } from "./ui/icons";
-import { usePathname } from "next/navigation";
-import ColorButton from "./ui/ColorButton";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Avatar from "./Avatar";
 
 const menu = [
   { href: "/", icon: <HomeIcon />, clickedIcon: <HomeFillIcon /> },
@@ -25,12 +25,12 @@ function Navbar() {
   const user = session?.user;
 
   return (
-    <div className="flex justify-between items-center px-6">
+    <div className="flex justify-between items-center px-4 md:px-6 py-1">
       <Link href={"/"}>
-        <h1 className="text-3xl font-bold">Yestagram</h1>
+        <h1 className="text-xl font-bold tracking-tight">Yestagram</h1>
       </Link>
       <nav>
-        <ul className="flex items-center gap-4 p-4">
+        <ul className="flex items-center gap-3 p-1 md:p-4 md:gap-4">
           {menu.map((item) => (
             <li key={item.href}>
               <Link href={item.href}>
@@ -38,6 +38,7 @@ function Navbar() {
               </Link>
             </li>
           ))}
+
           {user && (
             <li>
               <Link href={`/user/${user.username}`}>
@@ -45,13 +46,12 @@ function Navbar() {
               </Link>
             </li>
           )}
-          <li>
-            {session ? (
-              <ColorButton text="Sign out" onClick={() => signOut()} />
-            ) : (
-              <ColorButton text="Sign In" onClick={() => signIn()} />
-            )}
-          </li>
+
+          {session && (
+            <li>
+              <PiSignOut className="w-5 h-5" onClick={() => signOut()} />
+            </li>
+          )}
         </ul>
       </nav>
     </div>

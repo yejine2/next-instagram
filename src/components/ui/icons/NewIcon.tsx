@@ -1,5 +1,5 @@
-import { BsPlusSquare } from "react-icons/bs";
+import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
 export default function NewIcon() {
-  return <BsPlusSquare className="w-6 h-6" />;
+  return <MdOutlineAddPhotoAlternate className="w-6 h-6" />;
 }

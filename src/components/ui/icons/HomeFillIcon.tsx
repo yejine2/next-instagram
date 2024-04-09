@@ -1,5 +1,5 @@
-import { AiFillHome } from "react-icons/ai";
+import { RiHome5Fill } from "react-icons/ri";
 
 export default function HomeFillIcon() {
-  return <AiFillHome className="w-7 h-7" />;
+  return <RiHome5Fill className="w-6 h-6" />;
 }
